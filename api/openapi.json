@@ -1,0 +1,7 @@
+{"openapi":"3.1.0","info":{"title":"Caterpillar Agent API","version":"2028.1"},"paths":{
+ "/api/site.json":{"get":{"summary":"Whole site as structured data"}},
+ "/api/products":{"get":{"summary":"List products","parameters":[{"name":"power","in":"query"},{"name":"max_t","in":"query","description":"max operating weight tonnes"},{"name":"family","in":"query"}]}},
+ "/api/dealers":{"get":{"summary":"Nearest dealers","parameters":[{"name":"zip","in":"query"}]}},
+ "/api/search":{"get":{"summary":"Search","parameters":[{"name":"q","in":"query","required":true}]}},
+ "/api/chat":{"post":{"summary":"Talk to the Cat Concierge","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"messages":{"type":"array"}}}}}},"responses":{"200":{"description":"{reply, actions[]}"}}}},
+ "/api/feedback":{"post":{"summary":"File feedback on a section"}}}}

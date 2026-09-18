@@ -1,0 +1,9 @@
+{"name":"Cat Concierge","description":"Caterpillar's site agent: product specs, dealer lookup, feedback, navigation.","url":"/api/chat","version":"2028.1","protocol":"http+json",
+ "capabilities":{"streaming":false,"voice":true},
+ "skills":[
+  {"id":"spec","name":"Spec a machine or fleet","examples":["Cheapest way to move 5000 tonnes a day","Electric excavator under 40 t"]},
+  {"id":"dealer","name":"Find a dealer","examples":["Nearest dealer to 61629"]},
+  {"id":"feedback","name":"Critique or file feedback on a page section"},
+  {"id":"navigate","name":"Navigate the site or change theme"}
+ ],
+ "endpoints":{"site":"/api/site.json","products":"/api/products","dealers":"/api/dealers","search":"/api/search","llms":"/llms.txt","openapi":"/api/openapi.json"}}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: /api/site.json
+# Agents: see /llms.txt
