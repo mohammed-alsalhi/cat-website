@@ -39,6 +39,6 @@ createServer(async(req,res)=>{
   // content negotiation: agents asking for JSON on any page get the section, not HTML
   if((req.headers.accept||'').startsWith('application/json')||q.format==='json'){const id=p.replace(/^\//,'')||'home';return json(res,site.sections.find(s=>s.id===id)||site)}
   const f=p==='/'?'index.html':p.slice(1);
-  res.writeHead(200,{'content-type':MIME[extname(f)]||'text/plain'});res.end(await readFile(f));
- }catch(e){json(res,{error:e.message},p.startsWith('/api')?500:404)}
+  const data=await readFile(f);res.writeHead(200,{'content-type':MIME[extname(f)]||'text/plain'});res.end(data);
+ }catch(e){if(!res.headersSent)json(res,{error:e.message},p.startsWith('/api')?500:404);else res.end()}
 }).listen(process.env.PORT||3000,()=>console.log('cat.com 2028 → http://localhost:'+(process.env.PORT||3000)));
