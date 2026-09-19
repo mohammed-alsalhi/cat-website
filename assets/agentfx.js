@@ -31,7 +31,7 @@ play.onclick=async()=>{if(running)return;running=true;play.disabled=true;
  gsap.to(term,{opacity:1,y:0,duration:.6,ease:'expo.out'});gsap.to(scan,{opacity:1,duration:.3});
  await decrypt(term.querySelector('.title'),'agent · caterpillar.com · reading /b/');
  await type(pre,`<span class="d">$</span> <span class="k">GET</span> /llms.txt\n`);const llms=await fetch('/llms.txt').then(r=>r.text());await type(pre,`<span class="d">${llms.split('\n').slice(0,3).join('\n')}\n…</span>\n`,2);
- await type(pre,`<span class="d">$</span> <span class="k">GET</span> /b/ <span class="m">Accept: application/json</span>\n`);const site=await fetch('/b/',{headers:{accept:'application/json'}}).then(r=>r.json());
+ await type(pre,`<span class="d">$</span> <span class="k">GET</span> /b/ <span class="m">Accept: application/json</span>\n`);const site=await fetch('/b/site',{headers:{accept:'application/json'}}).then(r=>r.json());
  await type(pre,`<span class="d">→ 200 · ${site.sections.length} sections · ${document.querySelectorAll('[data-agent-action]').length} actions · JSON-LD ✓</span>\n\n`);
  const cur=document.createElement('span');cur.className='cur';pre.appendChild(cur);
  for(const sec of site.sections){const el=document.querySelector(`section[data-section="${sec.id}"]`);if(!el)continue;

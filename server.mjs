@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 const ROOT=dirname(fileURLToPath(import.meta.url));
 const FEEDBACK=process.env.VERCEL?'/tmp/feedback.jsonl':join(ROOT,'feedback.jsonl');
 
-const site=JSON.parse(await readFile(join(ROOT,'api/site.json'),'utf8'));
+import site from './api/site.json' with {type:'json'};
 const MIME={'.html':'text/html; charset=utf-8','.json':'application/json','.txt':'text/plain; charset=utf-8','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml'};
 const json=(res,o,code=200)=>{res.writeHead(code,{'content-type':'application/json','access-control-allow-origin':'*'});res.end(JSON.stringify(o))};
 const body=req=>new Promise(r=>{let b='';req.on('data',c=>b+=c);req.on('end',()=>{try{r(b?JSON.parse(b):{})}catch{r({})}})});
@@ -41,7 +41,7 @@ export default async function handler(req,res){
   if(p==='/api/feedback'&&req.method==='POST'){const b=await body(req);await appendFile(FEEDBACK,JSON.stringify({...b,ua:req.headers['user-agent']})+'\n');return json(res,{ok:true})}
   if(p==='/api/chat'&&req.method==='POST'){const b=await body(req);return json(res,parse(await claude(b.messages||[],b.context)))}
   // Stages B and C answer JSON to agents. Stage A is the plain clone and does not.
-  if(/^\/[bc]\/?/.test(p)&&((req.headers.accept||'').startsWith('application/json')||q.format==='json')){const id=p.split('/')[2];return json(res,id?site.sections.find(s=>s.id===id)||{error:'no such section',sections:site.sections.map(s=>s.id)}:{...site,page:p,llms:'/llms.txt',agent:'/.well-known/agent.json'})}
+  if(/^\/[bc]\/?/.test(p)&&((req.headers.accept||'').startsWith('application/json')||q.format==='json')){const id=p.split('/')[2];return json(res,id&&id!=='site'?site.sections.find(s=>s.id===id)||{error:'no such section',sections:site.sections.map(s=>s.id)}:{...site,page:p,llms:'/llms.txt',agent:'/.well-known/agent.json'})}
   if(/^\/[abc]$/.test(p)){res.writeHead(301,{location:p+'/'});return res.end()}
   if(/^\/[abc]\/$/.test(p))p+='index.html';
   const f=p==='/'?'index.html':p.slice(1);

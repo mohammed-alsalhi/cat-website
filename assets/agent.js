@@ -15,6 +15,6 @@ document.querySelectorAll('[data-brand]').forEach(b=>b.setAttribute('itemprop','
 const bar=document.createElement('div');bar.className='agentbar';bar.innerHTML=`<span>🤖 Agent-native page · <code>/llms.txt</code> · <code>Accept: application/json</code></span><button type="button" aria-expanded="false" aria-controls="agentview">View as agent</button>`;
 document.body.prepend(bar);
 const view=document.createElement('pre');view.id='agentview';view.hidden=true;view.className='agentview';bar.after(view);
-bar.querySelector('button').onclick=async e=>{const open=view.hidden;view.hidden=!open;e.target.setAttribute('aria-expanded',open);e.target.textContent=open?'Hide agent view':'View as agent';if(open&&!view.textContent){const j=await fetch(location.pathname,{headers:{accept:'application/json'}}).then(r=>r.json());view.textContent=`GET ${location.pathname}\nAccept: application/json\n\n`+JSON.stringify(j,null,2)}};
+bar.querySelector('button').onclick=async e=>{const open=view.hidden;view.hidden=!open;e.target.setAttribute('aria-expanded',open);e.target.textContent=open?'Hide agent view':'View as agent';if(open&&!view.textContent){const j=await fetch(location.pathname.replace(/\/?$/,'/site'),{headers:{accept:'application/json'}}).then(r=>r.json());view.textContent=`GET ${location.pathname}\nAccept: application/json\n\n`+JSON.stringify(j,null,2)}};
 window.SITE=site;
 })();
