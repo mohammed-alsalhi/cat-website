@@ -2,9 +2,12 @@
 import {createServer} from 'node:http';
 import {readFile, appendFile} from 'node:fs/promises';
 import {execFile} from 'node:child_process';
-import {extname} from 'node:path';
+import {extname,join,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const ROOT=dirname(fileURLToPath(import.meta.url));
+const FEEDBACK=process.env.VERCEL?'/tmp/feedback.jsonl':join(ROOT,'feedback.jsonl');
 
-const site=JSON.parse(await readFile('api/site.json','utf8'));
+const site=JSON.parse(await readFile(join(ROOT,'api/site.json'),'utf8'));
 const MIME={'.html':'text/html; charset=utf-8','.json':'application/json','.txt':'text/plain; charset=utf-8','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml'};
 const json=(res,o,code=200)=>{res.writeHead(code,{'content-type':'application/json','access-control-allow-origin':'*'});res.end(JSON.stringify(o))};
 const body=req=>new Promise(r=>{let b='';req.on('data',c=>b+=c);req.on('end',()=>{try{r(b?JSON.parse(b):{})}catch{r({})}})});
@@ -28,20 +31,21 @@ async function claude(messages,context){
 const parse=t=>{try{return JSON.parse(t.match(/\{[\s\S]*\}/)[0])}catch{return {reply:t,actions:[]}}};
 const hit=s=>o=>JSON.stringify(o).toLowerCase().includes(s);
 
-createServer(async(req,res)=>{
+export default async function handler(req,res){
  const u=new URL(req.url,'http://x');let p=u.pathname;const q=Object.fromEntries(u.searchParams);
  try{
   if(p==='/api/site.json')return json(res,site);
   if(p==='/api/brands')return json(res,site.brands);
   if(p==='/api/news')return json(res,site.news);
   if(p==='/api/search'){const s=(q.q||'').toLowerCase();return json(res,{sections:site.sections.filter(hit(s)),stories:site.stories.filter(hit(s)),brands:site.brands.filter(b=>b.toLowerCase().includes(s)),news:site.news.filter(hit(s))})}
-  if(p==='/api/feedback'&&req.method==='POST'){const b=await body(req);await appendFile('feedback.jsonl',JSON.stringify({...b,ua:req.headers['user-agent']})+'\n');return json(res,{ok:true})}
+  if(p==='/api/feedback'&&req.method==='POST'){const b=await body(req);await appendFile(FEEDBACK,JSON.stringify({...b,ua:req.headers['user-agent']})+'\n');return json(res,{ok:true})}
   if(p==='/api/chat'&&req.method==='POST'){const b=await body(req);return json(res,parse(await claude(b.messages||[],b.context)))}
   // Stages B and C answer JSON to agents. Stage A is the plain clone and does not.
   if(/^\/[bc]\/?/.test(p)&&((req.headers.accept||'').startsWith('application/json')||q.format==='json')){const id=p.split('/')[2];return json(res,id?site.sections.find(s=>s.id===id)||{error:'no such section',sections:site.sections.map(s=>s.id)}:{...site,page:p,llms:'/llms.txt',agent:'/.well-known/agent.json'})}
   if(/^\/[abc]$/.test(p)){res.writeHead(301,{location:p+'/'});return res.end()}
   if(/^\/[abc]\/$/.test(p))p+='index.html';
   const f=p==='/'?'index.html':p.slice(1);
-  const data=await readFile(f);res.writeHead(200,{'content-type':MIME[extname(f)]||'application/octet-stream','cache-control':'no-cache'});res.end(data);
+  const data=await readFile(join(ROOT,f));res.writeHead(200,{'content-type':MIME[extname(f)]||'application/octet-stream','cache-control':'no-cache'});res.end(data);
  }catch(e){if(!res.headersSent)json(res,{error:e.message},p.startsWith('/api')?500:404);else res.end()}
-}).listen(process.env.PORT||3000,()=>console.log('cat.com stages → http://localhost:'+(process.env.PORT||3000)));
+}
+if(process.argv[1]&&process.argv[1].endsWith('server.mjs'))createServer(handler).listen(process.env.PORT||3000,()=>console.log('cat.com stages → http://localhost:'+(process.env.PORT||3000)));

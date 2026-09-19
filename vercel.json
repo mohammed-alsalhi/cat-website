@@ -1,0 +1,4 @@
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/handler" }],
+  "functions": { "api/handler.js": { "includeFiles": "{a,b,c,assets,api,.well-known}/**,index.html,llms.txt,robots.txt,server.mjs" } }
+}
