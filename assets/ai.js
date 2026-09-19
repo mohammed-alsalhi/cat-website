@@ -54,9 +54,4 @@ for(const sec of document.querySelectorAll('section[data-section]')){const id=se
  sec.insertAdjacentHTML('afterbegin',`<div class="fb"><button type="button" aria-label="Rate ${name} section up" data-v="1">👍</button><button type="button" aria-label="Rate ${name} section down" data-v="-1">👎</button><button type="button" aria-label="Critique ${name} section" data-c>💬</button></div><button type="button" class="explain" data-x>✦ Explain this section</button>`);
  sec.querySelector('.fb').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.c){open();ask(`Give me feedback on the ${name} section`)}else{fetch('/api/feedback',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({section:id,vote:+b.dataset.v,ts:Date.now()})});b.textContent='✓';b.disabled=true}};
  sec.querySelector('[data-x]').onclick=()=>{open();ask(`Explain the ${name} section in two sentences`)}}
-// ---------- wow: GSAP scroll reveal with stagger (motion is opt-in; reduced-motion gets nothing)
-if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);gsap.matchMedia().add('(prefers-reduced-motion: no-preference)',()=>{
- for(const grp of ['.tiles .tile','.newsgrid a','.brand','.about .wrap > *','.catps .wrap > *']){const els=document.querySelectorAll(grp);els.forEach(e=>e.classList.add('reveal'));
-  gsap.to(els,{opacity:1,y:0,duration:.6,ease:'expo.out',stagger:.06,scrollTrigger:{trigger:els[0],start:'top 88%',once:true}})}
- gsap.from('.hero .copy > *',{opacity:0,y:14,duration:.7,ease:'expo.out',stagger:.08,delay:.1})})}
 })();

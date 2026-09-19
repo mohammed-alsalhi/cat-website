@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="llms" href="/llms.txt"><link rel="alternate" type="application/json" href="/api/site.json" title="Machine-readable site">
 <link rel="agent" href="/.well-known/agent.json"><meta name="agent-endpoint" content="/api/chat">
-<link rel="stylesheet" href="/assets/agent.css"><link rel="stylesheet" href="/assets/ai.css">
+<link rel="stylesheet" href="/assets/agent.css"><link rel="stylesheet" href="/assets/fx.css"><link rel="stylesheet" href="/assets/ai.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -98,8 +98,11 @@ document.getElementById('newsgrid').innerHTML=NEWS.map(([t,i])=>`<a href="#" dat
 </script>
 <script src="/assets/site.js"></script>
 <script src="/assets/agent.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="/assets/agentfx.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="/assets/fx.js"></script>
 <script src="/assets/ai.js"></script>
+<script src="/assets/aifx.js"></script>
 <script src="/assets/tractor.js"></script>
 </body>
 </html>
