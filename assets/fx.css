@@ -6,6 +6,10 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
 .fx .hero .slide.on{position:relative;opacity:1;pointer-events:auto}
 .fx .hero .slide img{will-change:transform}
 .fx .hero h1 .char{display:inline-block;will-change:transform,opacity,filter}
+/* carousel controls: dark glass, readable on any photo or theme */
+.fx .hero .arrow{background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:20px;line-height:1;transition:background .15s,border-color .15s}
+.fx .hero .arrow:hover{background:rgba(0,0,0,.8);border-color:var(--yellow)}
+.fx .hero .dots button{background:rgba(255,255,255,.45)}.fx .hero .dots button[aria-current]{background:var(--yellow)}
 /* StarBorder + ShinyText on primary buttons */
 .fx .btn{position:relative;overflow:hidden;isolation:isolate}
 .fx .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .9s var(--spring);z-index:1;pointer-events:none}

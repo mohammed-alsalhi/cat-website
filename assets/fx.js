@@ -8,6 +8,7 @@ if(window.Lenis&&!reduced){const lenis=new Lenis({lerp:.09});lenis.on('scroll',S
 // ---- Hero: crossfade + Ken Burns + SplitText chars on every slide change
 const hero=document.querySelector('.hero');
 function animateSlide(s){if(reduced)return;const h=s.querySelector('h1'),img=s.querySelector('img');
+ hero.querySelectorAll('.slide').forEach(o=>{if(o!==s){gsap.killTweensOf([o,o.querySelector('img'),...o.querySelectorAll('.char,p,.btn')]);gsap.set(o,{clearProps:'opacity'})}});
  if(!h._split)h._split=new SplitText(h,{type:'chars,words',charsClass:'char'});
  gsap.timeline().fromTo(s,{opacity:0},{opacity:1,duration:.6,ease:'power2.out'},0)
   .fromTo(img,{scale:1.12},{scale:1,duration:7,ease:'power1.out'},0)

@@ -15,7 +15,7 @@ if(stage==='b')document.documentElement.dataset.theme='dark';
  // Stats: floating yellow particles
  const stats=document.querySelector('.stats');if(stats)Particles(bg(stats),{particleCount:160,particleSpread:10,speed:.08,particleColors:[Y,'#ffffff',Y],alphaParticles:true,particleBaseSize:70,moveParticlesOnHover:true,particleHoverFactor:.6});
  // Section headings decrypt into place as they scroll in
- document.querySelectorAll('main h2').forEach(h=>DecryptedText(h,{animateOn:'view',sequential:true,revealDirection:'start',speed:28,maxIterations:8}));
+ document.querySelectorAll('main h2').forEach(h=>DecryptedText(h,{animateOn:'view',sequential:true,revealDirection:'start',speed:14,maxIterations:6}));
  // Film grain over everything (very subtle)
  if(!reduced){const n=document.body.appendChild(Object.assign(document.createElement('div'),{className:'rb-noise'}));Noise(n,{patternAlpha:10,patternRefreshInterval:3})}
  if(stage==='b'){
