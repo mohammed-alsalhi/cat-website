@@ -6,7 +6,7 @@ const THEMES=['light','dark','jobsite'];
 function setTheme(t){if(!THEMES.includes(t))t='light';document.documentElement.classList.add('notransition');document.documentElement.dataset.theme=t;void document.body.offsetHeight;requestAnimationFrame(()=>document.documentElement.classList.remove('notransition'));try{localStorage.theme=t}catch{}document.querySelectorAll('.themectl button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===t));$('meta[name=theme-color]').content=t==='light'?'#fff':'#000';return t}
 const ctl=document.createElement('div');ctl.className='themectl';ctl.setAttribute('role','group');ctl.setAttribute('aria-label','Theme');ctl.innerHTML=THEMES.map(t=>`<button type="button" data-t="${t}" aria-pressed="false">${t[0].toUpperCase()+t.slice(1)}</button>`).join('');
 ctl.onclick=e=>e.target.dataset.t&&setTheme(e.target.dataset.t);$('.util .wrap').append(ctl);
-let saved='light';try{saved=localStorage.theme||'light'}catch{}setTheme(saved);
+let saved='dark';try{saved=localStorage.theme||'dark'}catch{}setTheme(saved);
 // ---------- concierge dialog (native <dialog>: focus trap, Escape, inert, focus return for free)
 document.body.insertAdjacentHTML('beforeend',`
 <button id="ask" type="button" aria-haspopup="dialog" aria-controls="dlg"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Ask Caterpillar<kbd>/</kbd></button>

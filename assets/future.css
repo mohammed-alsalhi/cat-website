@@ -1,0 +1,17 @@
+/* Futuristic layer for B and C: dark by default, WebGL backdrops from assets/rb */
+section[data-section],.stats,.news,.brands,.catps{position:relative;isolation:isolate}
+.rb-bg{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.rb-over{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;overflow:hidden}
+.hero .copy,.hero .arrow,.hero .dots,.hero .pause{z-index:2}
+.rb-noise{position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.5}
+html[data-theme=dark] body{background:#0a0a0b}
+html[data-theme=dark] .about,html[data-theme=dark] .brands,html[data-theme=dark] .news{background:#0f0f10}
+html[data-theme=dark] .stats{background:#0a0a0b}
+html[data-theme=dark] .tile,html[data-theme=dark] .brand,html[data-theme=dark] .newsgrid a{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.1)}
+html[data-theme=dark] .resources,html[data-theme=dark] nav.main,html[data-theme=dark] .util,html[data-theme=dark] .stats{border-color:rgba(255,255,255,.1)}
+html[data-theme=dark] .search{border-color:rgba(255,255,255,.2)}
+html[data-theme=dark] .legal{background:#000}
+html[data-theme=dark] .agentview{border-top:1px solid rgba(255,255,255,.1)}
+.rb-tf .tf-word{color:inherit}
+.eb-content{border-radius:inherit}
+.eb-host{max-width:1280px;margin:0 auto;border-radius:20px}
