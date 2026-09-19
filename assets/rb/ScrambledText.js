@@ -30,7 +30,7 @@ export default function mount(el, opts = {}) {
   const gsap = window.gsap;
   el.classList.add('rb-scramble');
   // SplitText (aria:'auto' default) puts aria-label=text on el and aria-hidden on chars.
-  const split = gsap.SplitText.create(el, { type: 'chars', charsClass: 'rb-scramble-char' });
+  const split = (window.SplitText || gsap.SplitText).create(el, { type: 'chars', charsClass: 'rb-scramble-char' });
   const chars = split.chars;
   chars.forEach(c => (c.dataset.content = c.textContent));
 

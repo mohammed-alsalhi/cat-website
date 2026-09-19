@@ -41,3 +41,35 @@ section[data-section]:hover .fb,.fb:focus-within{opacity:1}@media(hover:none){.f
 @media(prefers-reduced-motion:no-preference){.reveal{opacity:0;transform:translateY(16px)}}
 .explain{position:absolute;left:12px;top:12px;z-index:3;opacity:0;transition:opacity .15s ease;background:#000;color:var(--yellow);border:0;padding:6px 10px;border-radius:6px;font:12px var(--body);cursor:pointer;min-height:28px}
 section[data-section]:hover .explain,.explain:focus-visible{opacity:1}@media(hover:none){.explain{opacity:1}}
+/* ---- chat redesign (overrides above) ---- */
+#ask{background:#111;color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:12px 18px 12px 16px;font:600 14px var(--body);box-shadow:0 12px 32px -12px rgba(0,0,0,.6);gap:8px}
+#ask svg{color:var(--yellow)}#ask kbd{background:rgba(255,255,255,.12);color:#ddd;border-radius:5px;padding:2px 7px;margin-left:4px}
+#ask:hover{border-color:var(--yellow)}
+#dlg{background:#0e0e0f;color:#f2f2f0;border:1px solid rgba(255,255,255,.1);border-radius:16px;--bubble:#1b1b1d;--line2:rgba(255,255,255,.1)}
+[data-theme=light] #dlg{background:#fff;color:#111;border-color:rgba(0,0,0,.08);--bubble:#f2f2f0;--line2:rgba(0,0,0,.08)}
+#dlg header{background:transparent;color:inherit;padding:14px 16px;border-bottom:1px solid var(--line2);font:600 13px var(--body);text-transform:none;letter-spacing:0;gap:10px}
+#dlg header .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(255,205,17,.18)}
+#dlg header .hint{margin-left:auto;font-size:11px;color:var(--mute);opacity:.8}
+#dlg header button{margin-left:0;color:inherit;opacity:.7;border-radius:8px;display:grid;place-items:center}#dlg header button:hover{opacity:1;background:var(--line2)}
+#log{padding:16px;gap:8px}
+.m{font-size:14px;line-height:1.55;padding:10px 14px;border-radius:14px;max-width:82%}
+.m.a{background:var(--bubble);border:0;border-bottom-left-radius:6px}
+.m.u{background:var(--yellow);color:#111;border-bottom-right-radius:6px}
+.m.s{font:11px var(--body);color:var(--mute);letter-spacing:.02em;padding:2px 0}
+.m.thinking{display:flex;gap:5px;padding:14px 16px;align-items:center}
+.m.thinking i{width:6px;height:6px;border-radius:50%;background:var(--yellow);opacity:.35;animation:think 1.2s infinite cubic-bezier(.32,.72,0,1)}
+.m.thinking i:nth-child(2){animation-delay:.15s}.m.thinking i:nth-child(3){animation-delay:.3s}
+@keyframes think{30%{opacity:1;transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.m.thinking i{animation:none;opacity:.8}}
+.m.err{background:rgba(220,40,40,.12);color:#ff9a9a;border-left:2px solid #e33}.m.err button{background:transparent;border:1px solid currentColor;color:inherit;border-radius:8px}
+.chips{padding:4px 12px 12px;gap:8px}
+.chips button{background:transparent;border:1px solid var(--line2);color:inherit;border-radius:999px;padding:7px 12px;font:12.5px var(--body);min-height:32px;transition:border-color .15s,background .15s}
+.chips button:hover{border-color:var(--yellow);background:rgba(255,205,17,.08)}
+#dlg form{padding:12px;border-top:1px solid var(--line2);gap:8px;align-items:center}
+#q{background:var(--bubble);border:1px solid transparent;border-radius:12px;padding:12px 14px;font:15px var(--body);color:inherit;outline:0}
+#q:focus-visible{border-color:var(--yellow);outline:0;box-shadow:0 0 0 3px rgba(255,205,17,.2)}
+#dlg form button{width:44px;height:44px;padding:0;border-radius:12px;display:grid;place-items:center;background:var(--bubble);color:inherit;min-width:44px}
+#dlg form button[type=submit]{background:var(--yellow);color:#111}
+#dlg form button:hover{filter:brightness(1.08)}
+#mic.on{background:#e33;color:#fff}
+#wave{margin:0 12px;width:calc(100% - 24px)}

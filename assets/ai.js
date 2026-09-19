@@ -9,12 +9,12 @@ ctl.onclick=e=>e.target.dataset.t&&setTheme(e.target.dataset.t);$('.util .wrap')
 let saved='light';try{saved=localStorage.theme||'light'}catch{}setTheme(saved);
 // ---------- concierge dialog (native <dialog>: focus trap, Escape, inert, focus return for free)
 document.body.insertAdjacentHTML('beforeend',`
-<button id="ask" type="button" aria-haspopup="dialog" aria-controls="dlg">✦ Ask Caterpillar <kbd>/</kbd></button>
+<button id="ask" type="button" aria-haspopup="dialog" aria-controls="dlg"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Ask Caterpillar<kbd>/</kbd></button>
 <dialog id="dlg" aria-labelledby="dlgt">
- <header><span id="dlgt">✦ Caterpillar Concierge</span><button type="button" value="close" aria-label="Close concierge" data-close>✕</button></header>
+ <header><span class="dot" aria-hidden="true"></span><span id="dlgt">Caterpillar Concierge</span><span class="hint">Esc to close</span><button type="button" aria-label="Close concierge" data-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></header>
  <div id="log" role="log" aria-live="polite"><div class="m a">Ask me anything about Caterpillar. I can also take you to a section, switch the theme, or critique the part of the page you're looking at. Press the mic to talk.</div></div>
  <div class="chips"><button type="button">Switch to jobsite theme</button><button type="button">Take me to the brands</button><button type="button">What is wrong with the About section?</button><button type="button">Summarize today's news</button></div>
- <form><label for="q">Your question</label><input id="q" name="q" placeholder="Ask or say anything…" autocomplete="off" enterkeyhint="send"><button type="button" id="mic" aria-label="Speak your question" aria-pressed="false">🎙</button><button type="submit">Send</button></form>
+ <form><label for="q">Your question</label><input id="q" name="q" placeholder="Ask or say anything…" autocomplete="off" enterkeyhint="send"><button type="button" id="mic" aria-label="Speak your question" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><button type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
 </dialog>`);
 const dlg=$('#dlg'),log=$('#log'),q=$('#q');let hist=[],last='';
 const open=()=>{if(!dlg.open){dlg.showModal();q.focus()}};
@@ -28,7 +28,7 @@ const sys=t=>add('s',t);
 function currentSection(){let best='hero',y=innerHeight/2;for(const s of document.querySelectorAll('section[data-section]')){const r=s.getBoundingClientRect();if(r.top<y&&r.bottom>y)best=s.dataset.section}return best}
 async function ask(text,retry){text=(text||'').trim();if(!text)return;if(!retry){add('u',text);hist.push({role:'user',content:text})}last=text;
  const fast=localIntent(text);if(fast)return run(fast);
- const wait=add('a','Thinking…');
+ const wait=add('a thinking','');wait.innerHTML='<i></i><i></i><i></i>';wait.setAttribute('aria-label','Thinking');
  try{const sec=currentSection();const r=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:hist,context:{section:sec,theme:document.documentElement.dataset.theme,sectionText:document.querySelector(`section[data-section="${sec}"]`)?.innerText.slice(0,1500)}})});
   if(!r.ok)throw new Error('HTTP '+r.status);wait.remove();run(await r.json())}
  catch(e){wait.className='m err';wait.textContent='Unable to reach the concierge. Check that the server is running, then try again.';const b=document.createElement('button');b.textContent='Try again';b.onclick=()=>{wait.remove();ask(last,true)};wait.appendChild(b)}

@@ -38,11 +38,11 @@ html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
 /* ScrollVelocity band */
 .velo{overflow:hidden;background:#000;color:var(--yellow);padding:16px 0;white-space:nowrap;font-family:var(--head);font-weight:700;text-transform:uppercase;font-size:clamp(32px,6vw,80px);line-height:1}
 .velo .row{display:flex;gap:48px;width:max-content;will-change:transform}
-.velo .row span{opacity:.9}.velo .row span:nth-child(even){-webkit-text-stroke:2px var(--yellow);color:transparent}
+.velo .row span:nth-child(even){opacity:.35}
 /* Fluid island nav */
 .fx nav.main{transition:none}
 .fx nav.main.island{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);border:1px solid rgba(0,0,0,.08);border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);box-shadow:0 10px 40px -10px rgba(0,0,0,.25);z-index:40;padding:0 8px}
-[data-theme=dark] .fx nav.main.island,[data-theme=jobsite] .fx nav.main.island{background:rgba(0,0,0,.72);border-color:rgba(255,255,255,.12)}
+html.fx[data-theme=dark] nav.main.island,html.fx[data-theme=jobsite] nav.main.island{background:rgba(12,12,12,.78);border-color:rgba(255,255,255,.14);color:#fff}
 .fx nav.main.island .wrap{height:48px;padding:0 8px}.fx nav.main.island a{height:48px;border-bottom:0;border-radius:999px;padding:0 14px}
 .fx nav.main.island a:hover{background:rgba(255,205,17,.25)}.fx nav.main.island .lang{display:none}
 .navspacer{height:0}.navspacer.on{height:45px}

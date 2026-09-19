@@ -110,7 +110,7 @@ export default function mount(el, opts = {}) {
   function build() {
     teardown();
     // SplitText aria:'auto' keeps the full text as aria-label on el.
-    split = new gsap.SplitText(el, {
+    split = new (window.SplitText || gsap.SplitText)(el, {
       type: 'chars',
       charsClass: 'rb-shuffle-char',
       wordsClass: 'rb-shuffle-word',
@@ -278,7 +278,7 @@ export default function mount(el, opts = {}) {
 
   (document.fonts?.ready ?? Promise.resolve()).then(() => {
     if (dead) return;
-    st = gsap.ScrollTrigger.create({
+    st = (window.ScrollTrigger || gsap.ScrollTrigger).create({
       trigger: el,
       start: scrollStart,
       once: o.triggerOnce,
