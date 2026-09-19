@@ -1,0 +1,4 @@
+.agentbar{background:#000;color:#fff;font-size:12px;display:flex;justify-content:center;gap:16px;align-items:center;padding:6px 12px;flex-wrap:wrap}
+.agentbar code{background:#333;color:#FFCD11;padding:1px 6px;border-radius:3px}
+.agentbar button{background:#FFCD11;border:0;padding:5px 12px;font:inherit;font-weight:600;cursor:pointer;min-height:24px}
+.agentview{background:#111;color:#c8f7c5;font:12px/1.5 ui-monospace,Menlo,monospace;margin:0;padding:16px 24px;max-height:320px;overflow:auto;white-space:pre-wrap}

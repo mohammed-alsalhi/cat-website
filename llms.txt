@@ -1,31 +1,32 @@
-# Caterpillar Inc. (caterpillar.com, 2028 edition)
+# Caterpillar Inc.
 
-> Caterpillar is the world's leading manufacturer of construction and mining equipment, off-highway diesel and natural gas engines, industrial gas turbines and diesel-electric locomotives. Tagline: "Let's Do the Work". NYSE: CAT.
+> Caterpillar is the world's leading manufacturer of construction and mining equipment, off-highway diesel and natural gas engines, industrial gas turbines and diesel-electric locomotives. NYSE: CAT. Founded 1925.
 
-This site is agent-native. Prefer the JSON endpoints below over scraping HTML. Any page path also answers `Accept: application/json` with structured content.
+This site is agent-native. Do not scrape the HTML: every page answers `Accept: application/json` with structured content, and the endpoints below carry everything on the page.
 
 ## Machine-readable
-- [Whole site as JSON](/api/site.json): sections, products, dealers, news, available actions
-- [Products](/api/products): filter with ?power=electric&max_t=40&family=EXCAVATORS
-- [Dealers](/api/dealers?zip=61629): nearest dealer lookup
-- [Search](/api/search?q=): full-text over products, sections, news
-- [Agent card](/.well-known/agent.json): capabilities and endpoints
-- [OpenAPI](/api/openapi.json)
+- [Whole site as JSON](/api/site.json): sections, featured stories, brands, news, canonical links, actions
+- [Search](/api/search?q=): full-text over sections, stories, brands, news
+- [Brands](/api/brands) · [News](/api/news)
+- [Agent card](/.well-known/agent.json) · [OpenAPI](/api/openapi.json)
 
-## Actions agents may take
-- POST /api/chat — talk to the Cat Concierge (same brain as the human UI). Body: {"messages":[{"role":"user","content":"..."}]}. Returns {"reply","actions"}.
-- POST /api/feedback — {"section":"products","vote":1|-1,"text":"..."}
+## Actions
+- POST /api/chat — {"messages":[{"role":"user","content":"..."}]} → {"reply","actions"}. Same concierge the human UI uses.
+- POST /api/feedback — {"section":"about","vote":1|-1,"text":"..."}
 
-## Sections
-- /#products — machine families (excavators, dozers, wheel loaders, mining, compact, power systems, technology)
-- /#services — Parts.Cat.Com, Customer Value Agreements, Cat Financial, Rental, Certified Used, Reman
-- /#technology — Cat Digital: VisionLink, Cat Command autonomy, Helios
-- /#sustainability — electrification, hydrogen, circularity
-- /#investors — financials and dividend history
-- /#dealers — dealer locator
-- /#careers — jobs
-- /#news — press releases
+## Page map (section ids double as anchors: /c/#about)
+- hero — five featured press releases
+- about — company mission
+- tiles — Careers, Investors, Media Contacts, Sustainability, Our Culture
+- brands — 18-brand portfolio
+- cat — Cat® Products & Services (cat.com)
+- news — latest four press releases
 
-## Policies
-- Rate limit: 60 req/min per agent. Identify yourself with a User-Agent.
-- Prices in /api/products are list USD, indicative only. Quote via a dealer.
+## Canonical destinations
+- Careers: https://careers.caterpillar.com/en/jobs/
+- Investors: https://investors.caterpillar.com
+- Dealer locator: https://www.cat.com/en_US/support/dealer-locator.html
+- Contact: https://www.caterpillar.com/en/contact.html
+
+## Policy
+Identify with a User-Agent. 60 req/min. Content © Caterpillar; this is a hackathon recreation.

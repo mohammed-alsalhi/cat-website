@@ -1,38 +1,27 @@
-{
- "name":"Caterpillar Inc.","tagline":"Let's Do the Work","year":2028,"ticker":"CAT",
+{"name":"Caterpillar Inc.","url":"https://www.caterpillar.com","ticker":"CAT","founded":1925,
+ "description":"World's leading manufacturer of construction and mining equipment, off-highway diesel and natural gas engines, industrial gas turbines and diesel-electric locomotives.",
  "sections":[
-  {"id":"home","title":"Home","summary":"Hero, live fleet telemetry, entry points to products, dealers, and the AI concierge."},
-  {"id":"products","title":"Products","summary":"Machine families and power systems. See /api/products."},
-  {"id":"services","title":"Services & Support","summary":"Parts.Cat.Com, Customer Value Agreements, Cat Financial, Rental, Certified Used, Reman."},
-  {"id":"technology","title":"Technology","summary":"Cat Digital: VisionLink telematics, Cat Command autonomy, Helios data platform. 1.5M connected assets."},
-  {"id":"sustainability","title":"Sustainability","summary":"Electrification (Cat 793 electric), hydrogen gensets, Reman circularity."},
-  {"id":"investors","title":"Investors","summary":"NYSE: CAT. $67B 2027 revenue, 32 consecutive years of dividend increases, $1.51 quarterly dividend."},
-  {"id":"dealers","title":"Find a dealer","summary":"Dealer locator. Agents: GET /api/dealers?zip=61629"},
-  {"id":"careers","title":"Careers","summary":"113,000 employees. Search jobs."},
-  {"id":"news","title":"News","summary":"Latest press releases."}
+  {"id":"hero","title":"Featured stories","summary":"Carousel of five press releases: The World Needs More Energy; Luck Stone Expands Autonomous Hauling; Workforce Initiative in Arkansas; Skycatch Acquisition; Field AI Collaboration."},
+  {"id":"about","title":"About Caterpillar","summary":"Connecting people to water, energy, food, work, school and one another. 100+ years building a better, more sustainable world."},
+  {"id":"tiles","title":"Careers, Investors, Media, Sustainability, Culture","summary":"Five entry points: Explore Careers, Find Investor Resources, Media Inquiries, View Sustainability Progress, Meet Our People."},
+  {"id":"brands","title":"Our Family of Brands","summary":"18 brands: Cat, Cat Financial, Cat Reman, Cat Rentals, Cat Lift Trucks, Anchor, AsiaTrak, FG Wilson, Hindustan, MaK, MWM, Olympian, Perkins, Progress Rail, SEM, Solar Turbines, SPM Oil & Gas, Turner Powertrain."},
+  {"id":"cat","title":"Cat Products & Services","summary":"Cat is the flagship brand. Largest, most experienced dealer network in the world. Link: cat.com"},
+  {"id":"news","title":"Latest News","summary":"Four latest press releases plus More News."}
  ],
- "products":[
-  {"id":"320","family":"EXCAVATORS","name":"Cat 320 GC","blurb":"20-ton class. Grade control standard. 25% lower fuel.","weight_t":20,"price_usd":215000,"power":"diesel"},
-  {"id":"336e","family":"EXCAVATORS","name":"Cat 336 Electric","blurb":"36-ton battery-electric. 8h runtime, 90-min fast charge.","weight_t":36,"price_usd":540000,"power":"electric"},
-  {"id":"d6","family":"DOZERS","name":"Cat D6 XE","blurb":"Electric drive. 35% better fuel efficiency. Cat Command remote ready.","weight_t":23,"price_usd":390000,"power":"diesel-electric"},
-  {"id":"950","family":"WHEEL LOADERS","name":"Cat 950 GC","blurb":"Mid-size loader. 3.5 m³ bucket. Autodig.","weight_t":18,"price_usd":260000,"power":"diesel"},
-  {"id":"793e","family":"MINING","name":"Cat 793 Electric","blurb":"240-tonne battery-electric mining truck. Dynamic Energy Transfer.","weight_t":390,"price_usd":6500000,"power":"electric"},
-  {"id":"259d3","family":"COMPACT","name":"Cat 259D3","blurb":"Compact track loader. 74 hp. Fits in a pickup-sized footprint.","weight_t":4,"price_usd":78000,"power":"diesel"},
-  {"id":"c32","family":"POWER SYSTEMS","name":"Cat C32 Genset","blurb":"1,000 kW. Hydrogen-blend ready. Data-center grade.","weight_t":9,"price_usd":420000,"power":"diesel/hydrogen"},
-  {"id":"cmd","family":"TECHNOLOGY","name":"Cat Command","blurb":"Remote and autonomous operation for dozers, excavators, haul trucks.","weight_t":0,"price_usd":null,"power":"n/a"}
+ "stories":[
+  {"title":"The World Needs More Energy","summary":"Growth is tied to power, and Caterpillar helps deliver reliable power."},
+  {"title":"Luck Stone Expands Autonomous Hauling","summary":"Luck Stone and Caterpillar are expanding autonomous hauling technology to two additional operations."},
+  {"title":"Caterpillar Expands Workforce Initiative To Arkansas","summary":"Caterpillar announced the launch of its workforce commitment in Arkansas."},
+  {"title":"Skycatch Acquisition Expands Mining Technology","summary":"Caterpillar has acquired Skycatch, a provider of spatial data capture, processing and analysis for mining."},
+  {"title":"Caterpillar & Field AI Collaboration","summary":"Caterpillar and FieldAI accelerate AI-powered innovation."}
  ],
- "dealers":[
-  {"name":"Altorfer Cat","city":"Peoria, IL","zip":"61629","phone":"+1 309 000 0000","services":["sales","parts","rental","service"]},
-  {"name":"Holt Cat","city":"San Antonio, TX","zip":"78201","phone":"+1 210 000 0000","services":["sales","parts","rental","service"]},
-  {"name":"Empire Cat","city":"Mesa, AZ","zip":"85201","phone":"+1 480 000 0000","services":["sales","parts","rental","mining"]},
-  {"name":"Finning","city":"Vancouver, BC","zip":"V6B","phone":"+1 604 000 0000","services":["sales","parts","mining"]},
-  {"name":"Al Bahar","city":"Dubai, UAE","zip":"00000","phone":"+971 4 000 0000","services":["sales","parts","power"]}
- ],
+ "brands":["Cat","Cat Financial","Cat Reman","Cat Rentals","Cat Lift Trucks","Anchor","AsiaTrak","FG Wilson","Hindustan","MaK","MWM","Olympian","Perkins","Progress Rail","SEM","Solar Turbines","SPM Oil & Gas","Turner Powertrain Systems"],
  "news":[
-  {"date":"2028-09-12","title":"Caterpillar delivers 1,000th Cat 793 Electric to Pilbara iron ore operations"},
-  {"date":"2028-08-28","title":"Cat Command autonomy now available on every D-series dozer"},
-  {"date":"2028-08-01","title":"Q2 2028 results: sales & revenues of $17.2B, record services growth"},
-  {"date":"2028-07-15","title":"Parts.Cat.Com drone delivery expands to 40 metros"}
+  {"date":"2026-09-11","title":"Luck Stone Builds On Autonomous Hauling Success With Expansion"},
+  {"date":"2026-08-14","title":"Caterpillar And FieldAI Advance AI-Powered Industrial Innovation"},
+  {"date":"2026-03-10","title":"Bringing STEM To SXSW EDU"},
+  {"date":"2026-02-27","title":"Caterpillar CEO Joe Creed To Participate In Virtual Investor Conference"}
  ],
- "actions":{"chat":"POST /api/chat {messages:[{role,content}]}","feedback":"POST /api/feedback {section,vote|text}","dealers":"GET /api/dealers?zip=","products":"GET /api/products?power=electric&max_t=40","search":"GET /api/search?q="}
+ "links":{"careers":"https://careers.caterpillar.com/en/jobs/","investors":"https://investors.caterpillar.com","news":"https://www.caterpillar.com/en/news.html","cat":"https://www.cat.com","contact":"https://www.caterpillar.com/en/contact.html","dealer":"https://www.cat.com/en_US/support/dealer-locator.html"},
+ "actions":{"chat":"POST /api/chat {messages:[{role,content}]}","feedback":"POST /api/feedback {section,vote|text}","search":"GET /api/search?q=","brands":"GET /api/brands","news":"GET /api/news"}
 }
